@@ -130,7 +130,7 @@ export function isBetween (num, x, y) {
         getIcon() {
           return (
             <View>
-              <MaterialCommunityIcon
+              <MaterialCommunityIcons
                 name='food'
                 color={'black'}
                 size={35}

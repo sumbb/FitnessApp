@@ -4,6 +4,8 @@ import { getMetricMetaInfo, timeToString } from '../utils/helpers'
 import AppSlider from './AppSlider';
 import AppStepper from './AppStepper';
 import DateHeader from './DateHeader'
+import { Ionicons } from '@expo/vector-icons'
+import TextButton from './TextButton'
 
 function SubmitBtn({ onPress }) {
     return (
@@ -73,9 +75,32 @@ export default class AddEntry extends Component {
         ))
     }
 
+    reset = () => {
+        const key = timeToString()
+
+        // TODO : update redux
+        // TODO : route to home
+        // TODO : update databse
+    }
+
     render() {
         const metaInfo = getMetricMetaInfo()
-
+        
+        if(this.props.alreadyLogged) {
+            return (
+                <View>
+                    <Ionicons
+                        name='md-happy'
+                        size={100}
+                    />
+                    <Text>You already logged your information today</Text>
+                    <TextButton onPress={this.reset}>
+                        Reset
+                    </TextButton>
+                </View>
+            )
+        }
+        
         return <View>
             <DateHeader date={(new Date()).toLocaleDateString()}/>
             {Object.keys(metaInfo).map((key) => {

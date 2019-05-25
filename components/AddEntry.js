@@ -6,6 +6,7 @@ import AppStepper from './AppStepper';
 import DateHeader from './DateHeader'
 import { Ionicons } from '@expo/vector-icons'
 import TextButton from './TextButton'
+import { submitEntry, removeEntry } from '../utils/api'
 
 function SubmitBtn({ onPress }) {
     return (
@@ -39,7 +40,7 @@ export default class AddEntry extends Component {
 
         // TODO: update redux
         // TODO: navigate to home
-        // TODO: save value to database
+        submitEntry({key, entry})
         // TODO: clear the notification
     }
 
@@ -80,7 +81,7 @@ export default class AddEntry extends Component {
 
         // TODO : update redux
         // TODO : route to home
-        // TODO : update databse
+        removeEntry(key)
     }
 
     render() {

@@ -7,6 +7,9 @@ import DateHeader from './DateHeader'
 import { Ionicons } from '@expo/vector-icons'
 import TextButton from './TextButton'
 import { submitEntry, removeEntry } from '../utils/api'
+import { connect } from 'react-redux'
+import { addEntry } from '../actions'
+import { getDailyReminderValue } from '../utils/helpers'
 
 function SubmitBtn({ onPress }) {
     return (
@@ -17,7 +20,7 @@ function SubmitBtn({ onPress }) {
     )
 }
 
-export default class AddEntry extends Component {
+class AddEntry extends Component {
     state = {
         run: 0,
         bike: 0,
@@ -38,7 +41,9 @@ export default class AddEntry extends Component {
             sleep: 0
         })
 
-        // TODO: update redux
+        this.props.dispatch(addEntry({
+            [key]: entry
+        }))
         // TODO: navigate to home
         submitEntry({key, entry})
         // TODO: clear the notification
@@ -79,7 +84,9 @@ export default class AddEntry extends Component {
     reset = () => {
         const key = timeToString()
 
-        // TODO : update redux
+        this.props.dispatch(addEntry({
+            [key]: getDailyReminderValue()
+        }))
         // TODO : route to home
         removeEntry(key)
     }
@@ -131,3 +138,13 @@ export default class AddEntry extends Component {
         </View>
     }
 }
+
+function mapStateToProps(state) {
+    const key = timeToString()
+
+    return {
+        alreadyLogged: state[key] && typeof state[key].today === 'undefined'
+    }
+}
+
+export default connect(mapStateToProps)(AddEntry)

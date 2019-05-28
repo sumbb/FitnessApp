@@ -66,7 +66,7 @@ const stackRouteConfig = {
 }
 
 const stackNavigatorConfig = {
-  headerMode: 'none'
+
 }
 
 const Stack = createStackNavigator(stackRouteConfig, stackNavigatorConfig)

@@ -17,6 +17,7 @@ class History extends Component {
 
     componentDidMount() {
         const { dispatch } = this.props
+        AsyncStorage.clear()
         fetchCalenderResults()
             .then((entries) => dispatch(receiveEntries(entries)))
             .then(({ entries }) => {

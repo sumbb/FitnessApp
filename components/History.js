@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Platform, TouchableOpacity, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import { receiveEntries, addEntry } from '../actions'
 import { timeToString, getDailyReminderValue } from '../utils/helpers'
@@ -17,7 +17,6 @@ class History extends Component {
 
     componentDidMount() {
         const { dispatch } = this.props
-
         fetchCalenderResults()
             .then((entries) => dispatch(receiveEntries(entries)))
             .then(({ entries }) => {

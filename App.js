@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import History from './components/History'
 import { createBottomTabNavigator, createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation'
-import { purple, white } from './utils/colors'
+import { purple, white, red } from './utils/colors'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import { Constants } from 'expo'
 import EntryDetail from './components/EntryDetail'
@@ -52,7 +52,10 @@ const Tabs = Platform.OS === 'ios'
 
 const stackRouteConfig = {
   Home: {
-    screen: Tabs
+    screen: Tabs,
+    navigationOptions: {
+      header: null
+    }
   },
   EntryDetail: {
     screen: EntryDetail,
@@ -65,11 +68,7 @@ const stackRouteConfig = {
   }
 }
 
-const stackNavigatorConfig = {
-
-}
-
-const Stack = createStackNavigator(stackRouteConfig, stackNavigatorConfig)
+const Stack = createStackNavigator(stackRouteConfig)
 
 function AppStatusBar({backgroundColor, ...props}) {
   return (

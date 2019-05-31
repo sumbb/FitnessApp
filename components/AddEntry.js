@@ -9,7 +9,7 @@ import TextButton from './TextButton'
 import { submitEntry, removeEntry } from '../utils/api'
 import { connect } from 'react-redux'
 import { addEntry } from '../actions'
-import { getDailyReminderValue } from '../utils/helpers'
+import { getDailyReminderValue, clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import { white, purple } from '../utils/colors'
 import { NavigationActions } from 'react-navigation'
 
@@ -49,7 +49,9 @@ class AddEntry extends Component {
         }))
         this.toHome()
         submitEntry({key, entry})
-        // TODO: clear the notification
+        clearLocalNotification()
+         .then(setLocalNotification)
+        
     }
 
     increment = (metric) => {

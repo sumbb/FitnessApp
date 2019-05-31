@@ -11,6 +11,7 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import { Constants } from 'expo'
 import EntryDetail from './components/EntryDetail'
 import Live from './components/Live'
+import { setLocalNotification } from './utils/helpers'
 
 const routeConfig = {
   History: {
@@ -87,6 +88,9 @@ function AppStatusBar({backgroundColor, ...props}) {
 }   
 
 export default class App extends Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
       <Provider store={createStore(reducer)}>
